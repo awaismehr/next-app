@@ -2,12 +2,21 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 
-import TextField from "@/components/common/textfield";
-import { LoginFormValues } from "@/types/forms/auth";
-import { loginSchema } from "@/validation/login.schema";
+// next imports
+import { useRouter } from "next/router";
+
+// toast imports
 import toast from "react-hot-toast";
 
+import { loginSchema } from "@/validation/login.schema";
+
+import { LoginFormValues } from "@/types/forms/auth";
+import TextField from "@/components/common/Textfield";
+
 const LoginPage = () => {
+  // hooks
+  const router = useRouter();
+
   const {
     control,
     handleSubmit,
@@ -20,10 +29,18 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = (formValues: LoginFormValues) => {
+  const onSubmit = ({ email, password }: LoginFormValues) => {
     try {
-      console.log({ formValues });
+      if (email !== "john@gmail.com" || password !== "secret") {
+        toast.error("Email/Password is not correct!");
+        return;
+      }
+
+      // if user is valid user then create a token and store it in local storage
+      const token = (Math.random() + 1).toString(36).substring(7);
+      localStorage.setItem("token", token);
       toast.success("Sign in successfully.");
+      router.push("/dashboard");
     } catch (error) {
       console.log(error);
     }
