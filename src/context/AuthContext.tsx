@@ -16,12 +16,15 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const initAuth = async () => {
       try {
+        // get token from local storage
         const token = window.localStorage.getItem("token")!;
 
+        // check if there is token and route is login
         if (token && router.pathname === "/login") {
           router.back();
         }
 
+        // else clear local storage and redirect user to login
         if (!token) {
           localStorage.clear();
           router.replace("/login");

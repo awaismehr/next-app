@@ -1,10 +1,14 @@
-import React from "react";
+// react imports
+import React, { FC } from "react";
+
+import { User } from "@/types/apps/user";
 
 interface TableProps {
-  rows: das;
+  rows: User[];
+  columns: string[];
 }
 
-const Table = ({ rows, columns }) => {
+const Table: FC<TableProps> = ({ rows, columns }) => {
   return (
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

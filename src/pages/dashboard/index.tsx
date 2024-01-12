@@ -1,9 +1,11 @@
-import Table from "@/components/common/table";
-import { User } from "@/types/apps/user";
+// react imports
 import { FC } from "react";
 
+import Table from "@/components/common/table";
+import { User } from "@/types/apps/user";
+
 interface DashboardPageProps {
-  data: User;
+  data: User[];
 }
 
 const DashboardPage: FC<DashboardPageProps> = ({ data }) => {
