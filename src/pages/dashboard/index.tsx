@@ -1,7 +1,7 @@
 // react imports
 import { FC } from "react";
 
-import Table from "@/components/common/table";
+import Table from "@/components/common/Table";
 import { User } from "@/types/apps/user";
 
 interface DashboardPageProps {
